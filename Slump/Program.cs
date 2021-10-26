@@ -8,6 +8,7 @@ int Hit = generator.Next(100);
 int Damage = generator.Next(20,40);
 int Hp = 100;
 int Hp2 = 100;
+string answer = "";
 string name = "";
 string enemy = "";
 
@@ -26,9 +27,21 @@ Console.WriteLine("Player 1 enter your name: ");
 name = Console.ReadLine();
 }
 
-while(enemy == ""){
-Console.WriteLine("Player 2 enter your name: ");
-enemy = Console.ReadLine();
+while (answer != "a" && answer != "b" && answer != "c"){
+Console.WriteLine("Choose your opponent");
+Console.WriteLine("Choose a, b or c");
+
+ answer = Console.ReadLine();
+}
+
+if(answer == "a"){
+enemy = "Joel1";
+}
+else if(answer == "b"){
+enemy = "Joel2";
+}
+else if(answer == "c"){
+enemy = "Joel3";
 }
 
 
@@ -110,9 +123,7 @@ else if(Hp2 <= 0){
     Console.ResetColor();
 
     Console.ForegroundColor = ConsoleColor.Green;
-    Console.WriteLine(name + "\n" +won);
-    
-                
+    Console.WriteLine(name + "\n" +won);               
 }
 
 
