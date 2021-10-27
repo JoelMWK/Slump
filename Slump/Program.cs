@@ -5,125 +5,139 @@ Random generator = new Random();
 
 
 int Hit = generator.Next(100);
-int Damage = generator.Next(20,40);
+int Damage = generator.Next(20, 40);
 int Hp = 100;
 int Hp2 = 100;
 string answer = "";
 string name = "";
 string enemy = "";
 
-string lostpath = @"C:\Users\kustemo.joel\Documents\Repos\Programmering\Slump\Slump\lost.txt";
+string lostpath = "lost.txt";
 string lost = File.ReadAllText(lostpath);
 
-string wonpath = @"C:\Users\kustemo.joel\Documents\Repos\Programmering\Slump\Slump\won.txt";
+string wonpath = "won.txt";
 string won = File.ReadAllText(wonpath);
 
-string tiepath = @"C:\Users\kustemo.joel\Documents\Repos\Programmering\Slump\Slump\tie.txt";
+string tiepath = "tie.txt";
 string tie = File.ReadAllText(tiepath);
 
 
-while(name == ""){
-Console.WriteLine("Player 1 enter your name: ");
-name = Console.ReadLine();
+while (name == "")
+{
+    Console.WriteLine("Player 1 enter your name: ");
+    name = Console.ReadLine();
 }
 
-while (answer != "a" && answer != "b" && answer != "c"){
-Console.WriteLine("Choose your opponent");
-Console.WriteLine("Choose a, b or c");
+while (answer != "1" && answer != "2" && answer != "3")
+{
+    Console.WriteLine("Choose your opponent");
+    Console.WriteLine("Choose 1, 2 or 3");
 
- answer = Console.ReadLine();
+    answer = Console.ReadLine();
 }
 
-if(answer == "a"){
-enemy = "Joel1";
+if (answer == "1")
+{
+    enemy = "Mikael";
 }
-else if(answer == "b"){
-enemy = "Joel2";
+else if (answer == "2")
+{
+    enemy = "Tu";
 }
-else if(answer == "c"){
-enemy = "Joel3";
-}
-
-
-while(Hp > 0 && Hp2 > 0){
-
-Hit = generator.Next(100);
-Damage = generator.Next(20,40);    
-    
-Console.WriteLine("\n"+ enemy +" tries to hit you\n");
-if(Hit < 70){
-
-Hp -=Damage;
-
-Console.WriteLine("-----------------------------");
-Console.WriteLine(name +" got hit");
-Console.WriteLine(name +" took " + Damage +" damage");
-Console.WriteLine(name +" has " +Hp +" health remaining");
-Console.WriteLine("-----------------------------");
-
-
-Console.ReadLine();
-
-}
-else{
-   Console.WriteLine("-----------------------------");
-   Console.WriteLine(name +" managed to dodge the hit");
-   Console.WriteLine("-----------------------------\n");
-   Console.ReadLine(); 
+else if (answer == "3")
+{
+    enemy = "Joel";
 }
 
 
-Hit = generator.Next(100);
-Damage = generator.Next(20,40);
+while (Hp > 0 && Hp2 > 0)
+{
 
-Console.WriteLine(name +" your turn\n");
+    Hit = generator.Next(100);
+    Damage = generator.Next(20, 40);
 
-Console.WriteLine(name +" try to hit " +enemy +"\n");
-if(Hit < 70){
+    Console.WriteLine("\n" + enemy + " tries to hit you\n");
+    if (Hit < 70)
+    {
 
-Hp2 -=Damage;
+        Hp -= Damage;
 
-Console.WriteLine("-----------------------------");
-Console.WriteLine(name +" hit " +enemy);
-Console.WriteLine(enemy +" took " + Damage +" damage");
-Console.WriteLine(enemy +" has "+Hp2 +" health remaining");
-Console.WriteLine("-----------------------------");
+        Console.WriteLine("-----------------------------");
+        Console.WriteLine(name + " got hit");
+        Console.WriteLine(name + " took " + Damage + " damage");
+        Console.WriteLine(name + " has " + Hp + " health remaining");
+        Console.WriteLine("-----------------------------");
+
+        Console.ReadLine();
+
+    }
+    else
+    {
+        Console.WriteLine("-----------------------------");
+        Console.WriteLine(name + " managed to dodge the hit");
+        Console.WriteLine("-----------------------------\n");
+        Console.ReadLine();
+    }
 
 
-Console.ReadLine();
+    Hit = generator.Next(100);
+    Damage = generator.Next(20, 40);
+
+    Console.WriteLine(name + " your turn\n");
+
+    Console.WriteLine(name + " try to hit " + enemy + "\n");
+    if (Hit < 70)
+    {
+
+        Hp2 -= Damage;
+
+        Console.WriteLine("-----------------------------");
+        Console.WriteLine(name + " hit " + enemy);
+        Console.WriteLine(enemy + " took " + Damage + " damage");
+        Console.WriteLine(enemy + " has " + Hp2 + " health remaining");
+        Console.WriteLine("-----------------------------");
+
+
+        Console.ReadLine();
+
+    }
+    else
+    {
+        Console.WriteLine("-----------------------------");
+        Console.WriteLine(enemy + " managed to dodge");
+        Console.WriteLine("-----------------------------\n");
+        Console.ReadLine();
+    }
 
 }
-else{
-    Console.WriteLine("-----------------------------");
-    Console.WriteLine(enemy +" managed to dodge");
-    Console.WriteLine("-----------------------------\n");
-    Console.ReadLine();
-}
+
+if (Hp <= 0 && Hp2 <= 0)
+{
+
+    Console.Clear();
+    Console.WriteLine("It's a" + "\n" + tie);
 
 }
 
-if(Hp <= 0 && Hp2 <= 0){
-
-    Console.WriteLine("It's a" + "\n" +tie);
-
-}
-
-else if(Hp <= 0){
+else if (Hp <= 0)
+{
+    Console.Clear();
     Console.ForegroundColor = ConsoleColor.Red;
-    Console.WriteLine(name + "\n" +lost +"\n");
+    Console.WriteLine(name + "\n" + lost + "\n");
     Console.ResetColor();
 
-
     Console.ForegroundColor = ConsoleColor.Green;
-    Console.WriteLine(enemy + "\n" +won);
+    Console.WriteLine(enemy + "\n" + won);
 }
-else if(Hp2 <= 0){
+else if (Hp2 <= 0)
+{
+    Console.Clear();
     Console.ForegroundColor = ConsoleColor.Red;
-    Console.WriteLine(enemy + "\n" +lost +"\n");
+    Console.WriteLine(enemy + "\n" + lost + "\n");
     Console.ResetColor();
 
     Console.ForegroundColor = ConsoleColor.Green;
-    Console.WriteLine(name + "\n" +won);               
+    Console.WriteLine(name + "\n" + won);
 }
 
 
